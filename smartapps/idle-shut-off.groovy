@@ -58,5 +58,3 @@ def switchOnHandler(event) {
 def turnOffHandler() {
 	switch1.off()
 }
-
-// TODO: implement event handlers
