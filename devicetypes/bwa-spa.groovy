@@ -43,7 +43,7 @@ import groovy.time.TimeCategory
 
 metadata {
     definition (name: PARENT_DEVICE_NAME, namespace: NAMESPACE, author: "Jonathan Drake") {
-        capability "Configuration"
+        capability "Refresh"
                         
         /* This is a list of attributes sent to us right after we successfully login
          * to Balboa and pull details about Spas linked to the user's account.
