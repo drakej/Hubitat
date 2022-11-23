@@ -31,11 +31,13 @@ import groovy.transform.Field
 metadata {
     definition (name: SWITCH_CHILD_DEVICE_NAME_PREFIX, namespace: NAMESPACE, author: "Jonathan Drake") {
         capability "Refresh"
+        capability "PushableButton"
         
         attribute "pump", "enum", ["off", "low", "high"]
         attribute "balboaAPIButtonNumber", "number"
+        attribute "numberOfButtons", "number"
         
-        command "toggle"
+        command "push"
     }
 }
 
@@ -70,16 +72,20 @@ void setBalboaAPIButtonNumber(balboaAPIButtonNumber) {
     sendEvent(name: "balboaAPIButtonNumber", value: balboaAPIButtonNumber)
 }
 
-void toggle() {
+void push(buttonNumber) {
+    logMessage(2, "Received a push for button ${buttonNumber}")
     if (device.currentValue("pump", true) == "off")
     {
         sendEvent(name: "pump", value: "low")
+        logMessage(3, "Going to set pump to low")
         parent?.sendCommand("Button", device.currentValue("balboaAPIButtonNumber"))
     } else if (device.currentValue("pump", true) == "low") {
         sendEvent(name: "pump", value: "high")
+        logMessage(3, "Going to set pump to high")
         parent?.sendCommand("Button", device.currentValue("balboaAPIButtonNumber"))
     } else {
         sendEvent(name: "pump", value: "off")
+        logMessage(3, "Going to set pump to off")
         parent?.sendCommand("Button", device.currentValue("balboaAPIButtonNumber"))
     }
 }
