@@ -16,19 +16,21 @@
  *  CHANGE HISTORY
  *  VERSION     DATE            NOTES
  *  0.0.1       2020-10-11      First release
- *  0.0.2       2022-06-29      
+ *  0.0.2       2022-11-22      Added logging
  *
  */
 
 import groovy.transform.Field
 import groovy.time.TimeCategory
 
+@Field static int LOG_LEVEL = 3
+
 @Field static String NAMESPACE = "drakej"
 
 @Field static String THERMOSTAT_CHILD_DEVICE_NAME_PREFIX = "BWA SPA - Thermostat"
 
 metadata {
-    definition (name: THERMOSTAT_CHILD_DEVICE_NAME_PREFIX, namespace: NAMESPACE, author: "Jonathan Drake") {
+    definition (name: THERMOSTAT_CHILD_DEVICE_NAME_PREFIX, namespace: NAMESPACE, author: "Richard Powell") {
         capability "Thermostat"
         capability "Refresh"
         
@@ -44,6 +46,16 @@ metadata {
         
         preferences {
             input "defaultOnTemperature", "number", title: "Default Temperature When Turned On", range: getTemperatureRange()
+        }
+    }
+}
+
+def logMessage(level, message) {
+    if (level >= LOG_LEVEL) {
+        if (level < 3) {
+            log.debug message
+        } else {
+            log.info message
         }
     }
 }

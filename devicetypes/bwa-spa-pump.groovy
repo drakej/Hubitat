@@ -16,6 +16,7 @@
  *  CHANGE HISTORY
  *  VERSION     DATE            NOTES
  *  0.0.1       2022-06-21      First release, based on switch from Richard Powell
+ *  0.0.2       2022-11-22      Added logging
  *
  */
 
@@ -31,7 +32,6 @@ metadata {
     definition (name: SWITCH_CHILD_DEVICE_NAME_PREFIX, namespace: NAMESPACE, author: "Jonathan Drake") {
         capability "Refresh"
         
-        
         attribute "pump", "enum", ["off", "low", "high"]
         attribute "balboaAPIButtonNumber", "number"
         
@@ -39,8 +39,18 @@ metadata {
     }
 }
 
+def logMessage(level, message) {
+    if (level >= LOG_LEVEL) {
+        if (level < 3) {
+            log.debug message
+        } else {
+            log.info message
+        }
+    }
+}
+
 void parse(input) {
-    log.info "Pump input: '${input}'"
+    logMessage(2, "Pump input: '${input}'")
     switch (input) {
         case "low":
             sendEvent(name: "pump", value: "low")
@@ -51,6 +61,9 @@ void parse(input) {
         case "off":
             sendEvent(name: "pump", value: "off")
     }
+}
+
+void installed() {
 }
 
 void setBalboaAPIButtonNumber(balboaAPIButtonNumber) {

@@ -16,11 +16,13 @@
  *  CHANGE HISTORY
  *  VERSION     DATE            NOTES
  *  0.0.1       2022-06-28      First release, based on switch from Richard Powell
+ *  0.0.2       2022-11-22      Added logging
  *
  */
 
 import groovy.transform.Field
 
+@Field static int LOG_LEVEL = 3
 
 @Field static String NAMESPACE = "drakej"
 
@@ -37,8 +39,18 @@ metadata {
     }
 }
 
+def logMessage(level, message) {
+    if (level >= LOG_LEVEL) {
+        if (level < 3) {
+            log.debug message
+        } else {
+            log.info message
+        }
+    }
+}
+
 void parse(input) {
-    log.info "Blower input: '${input}'"
+    logMessage(2, "Blower input: '${input}'")
     switch (input) {
         case "low":
             sendEvent(name: "blower", value: "low")
@@ -52,6 +64,9 @@ void parse(input) {
         case "off":
             sendEvent(name: "blower", value: "off")
     }
+}
+
+void installed() {
 }
 
 void setBalboaAPIButtonNumber(balboaAPIButtonNumber) {
