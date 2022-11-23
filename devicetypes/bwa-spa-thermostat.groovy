@@ -38,6 +38,7 @@ metadata {
         attribute "supportedThermostatModes", "enum", ["off", "heat"]
         attribute "thermostatFanMode", "string"
         attribute "thermostatOperatingState", "string"
+        attribute "temperature", "number"
 
         command "heat"
         command "setThermostatMode"
@@ -101,7 +102,7 @@ void setHeatingSetpoint(setpoint) {
 }
 
 def getTemperatureRange() {
-    return "(26.5..104)"
+    return "(26.5..105)"
 }
 
 def refresh() {
