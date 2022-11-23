@@ -198,7 +198,7 @@ def parsePanelData(encodedData) {
     
     // Send events to Thermostat child device
     def thermostatChildDevice = fetchChild(false, "Thermostat", "Thermostat")
-    if (thermostatChildDevice != null) {
+    if (thermostatChildDevice != null && actualTemperature != -1) {
         log.info "Temperature being set: ${actualTemperature}"
         thermostatChildDevice.sendEventsWithUnits([
             [name: "temperature", value: actualTemperature, unit: temperatureScale],
