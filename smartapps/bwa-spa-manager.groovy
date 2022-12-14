@@ -162,13 +162,13 @@ boolean doLogin(){
             state.loginResponse = "Access forbidden"
             state.credentialStatus = "[Disconnected]"
             state.token = null
-            state.spas = null
+            state.spa = null
             break
         case 401:
             state.loginResponse = resp.data.message
             state.credentialStatus = "[Disconnected]"
             state.token = null
-            state.spas = null
+            state.spa = null
             break
         case 200:
             logMessage(3, "Successfully logged in.")
@@ -185,7 +185,7 @@ boolean doLogin(){
             state.loginResponse = "Login unsuccessful"
             state.credentialStatus = "[Disconnected]"
             state.token = null
-            state.spas = null
+            state.spa = null
             break
     }
 
