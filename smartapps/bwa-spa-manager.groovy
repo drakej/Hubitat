@@ -2,18 +2,14 @@
  *  Hubitat BWA Spa Manager
  *  -> App
  *
- *  Copyright 2022 Jonathan Drake
+ *  Copyright 2022-2023 Jonathan Drake
  *  Copyright 2020 Richard Powell
  *   based on work Copyright 2020 Nathan Spencer that he did for SmartThings
  *
- *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ *  Licensed under the The MIT License (MIT); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed
- *  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License
- *  for the specific language governing permissions and limitations under the License.
+ *      https://mit-license.org/
  *  
  *  CHANGE HISTORY
  *  VERSION     DATE            NOTES
