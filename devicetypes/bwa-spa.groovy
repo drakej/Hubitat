@@ -27,13 +27,14 @@
  *  1.1.3       2020-10-11      Major rewrite of this driver to work with Hubitat's Parent-Child device driver model
  *  1.1.4       2020-10-11      Support the remaining device types except Blower, more code clean-up
  *  2.0.0       2022-06-28      Revamping since there's a lot of missing functionality but overall a great base from Richard and Nathan
+ *  2.0.1       2022-11-24      Moved logging to shared library
  *
  */
 
 import groovy.transform.Field
 import groovy.time.TimeCategory
 
-@Field static int LOG_LEVEL = 3
+#include drakej.logmagic
 
 @Field static String NAMESPACE = "drakej"
 
@@ -90,16 +91,6 @@ metadata {
     Aux4: 25,
     TempRange: 80,
     HeatMode: 81]
-
-def logMessage(level, message) {
-    if (level >= LOG_LEVEL) {
-        if (level < 3) {
-            log.debug message
-        } else {
-            log.info message
-        }
-    }
-}
 
 def installed() {
 }

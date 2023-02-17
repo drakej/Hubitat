@@ -17,12 +17,13 @@
  *  VERSION     DATE            NOTES
  *  0.0.1       2022-06-28      First release, based on switch from Richard Powell
  *  0.0.2       2022-11-22      Added logging
+ *  0.0.3       2022-11-24      Moved logging to shared library
  *
  */
 
 import groovy.transform.Field
 
-@Field static int LOG_LEVEL = 3
+#include drakej.logmagic
 
 @Field static String NAMESPACE = "drakej"
 
@@ -36,16 +37,6 @@ metadata {
         attribute "balboaAPIButtonNumber", "number"
         
         command "toggle"
-    }
-}
-
-def logMessage(level, message) {
-    if (level >= LOG_LEVEL) {
-        if (level < 3) {
-            log.debug message
-        } else {
-            log.info message
-        }
     }
 }
 
