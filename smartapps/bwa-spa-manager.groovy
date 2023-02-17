@@ -22,6 +22,7 @@
  *  1.0.1b      2020-09-17      Modified to now work with Hubitat
  *  1.1.0       2020-10-11      Major rewrite: Now downloads hot tub config, supports child devices, major refactoring, etc.
  *  2.0.0       2022-06-28      Added new controls to decode from configuration
+ *  2.0.1       2023-02-17      Decreased level for logging that was a bit noisy
  *
  */
 
@@ -224,7 +225,7 @@ def doCallout(calloutMethod, urlPath, calloutBody, contentType) {
 }
 
 def doCallout(calloutMethod, urlPath, calloutBody, contentType, queryParams) {
-    logMessage(3, "\"${calloutMethod}\"-ing ${contentType} to \"${urlPath}\"")
+    logMessage(2, "\"${calloutMethod}\"-ing ${contentType} to \"${urlPath}\"")
     def content_type
     switch(contentType) {
         case "xml":
@@ -319,7 +320,7 @@ def initialize() {
 }
 
 def pollChildren() {
-    logMessage(3, "polling...")
+    logMessage(2, "polling...")
     def devices = getChildDevices()
     devices.each {
         def deviceId = it.currentValue("deviceId", true)
